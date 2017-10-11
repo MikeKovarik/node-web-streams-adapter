@@ -43,7 +43,7 @@ To learn more about the upcoming Web Streams API standard, read the [spec](https
 Node's `Readable` streams pushes (to the stream) and dispatches (to consumer) data synchronously. E.g. Immediately after adding new chunk to the stream with `readable.push(chunk)`, the stream sends to to consumer, empties the inner buffer and calls `_read` again even if the previous call is not done yet.
 
 Simply put:
-```
+``` js
 class MyReadable extends stream.Readable {
     _read(size) {
         // get the chunk
@@ -62,7 +62,7 @@ class MyReadable extends stream.Readable {
 
 With Web Streams API (and this adapter) this code could be sligthly rewritten
 
-```
+``` js
 new ReadableStream({
     pull(controller) {
         // get the chunk
@@ -81,7 +81,7 @@ new ReadableStream({
 
 but because this adapter is based on Node's `Readable`, the same problem occurs. To avoid any problems, the method should be rewritten to close the stream as the first thing.
 
-```
+``` js
 new ReadableStream({
     pull(controller) {
         // Always ask if the resource has no more data to read from and end this stream if so.
