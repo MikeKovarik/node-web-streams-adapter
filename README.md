@@ -1,6 +1,14 @@
 # node-web-streams-adapter
 
-Use the new Web Streams API built on top of Node Streams
+Use the new Web Streams API built on top of Node Streams.
+
+But this is rather a basic shim more than a polyfill.
+
+## Work in progress
+
+So far only the `ReadableStream`'s basic implementation's done.
+
+Help and PRs are welcomed!
 
 ## Installation
 
@@ -96,7 +104,3 @@ new ReadableStream({
     }
 })
 ```
-
-## Work in progress
-
-So far only the `ReadableStream`'s basic implementation's done.

@@ -3,30 +3,49 @@ import {nextTick} from './util.mjs'
 
 
 // Web Streams ReadableStream shim built on top of Node.js' stream.Readable class
+// https://streams.spec.whatwg.org/#rs-constructor
+// https://streams.spec.whatwg.org/#rs-prototype
 export default class ReadableStreamAdapter extends Readable {
 
 	constructor (underlyingSource, options = {}) {
-		console.warn('implement .pipeTo, .pipeThrough, .getReader() and other things from spec')
-		console.warn('implement cancel')
 		super(options)
-		this.underlyingSource = underlyingSource
-		this.__applyReadableStreamAdapter(underlyingSource)
+		this._ReadableStreamConstructor(underlyingSource, options)
 	}
 
-	pipeTo() {
-		console.warn('TO BE IMPLEMENTED ReadableStreamAdapter.pipeTo()')
+	// https://streams.spec.whatwg.org/#rs-locked
+	get locked() {
+		console.warn('TO BE IMPLEMENTED ReadableStreamAdapter.locked')
 	}
-	pipeThrough() {
-		console.warn('TO BE IMPLEMENTED ReadableStreamAdapter.pipeThrough()')
+
+	// https://streams.spec.whatwg.org/#rs-cancel
+	cancel(reason) {
+		console.warn('TO BE IMPLEMENTED ReadableStreamAdapter.tee()')
 	}
-	getReader() {
+
+	// https://streams.spec.whatwg.org/#rs-get-reader
+	getReader({mode} = {}) {
 		console.warn('TO BE IMPLEMENTED ReadableStreamAdapter.getReader()')
 	}
+
+	// https://streams.spec.whatwg.org/#rs-pipe-through
+	pipeThrough({writable, readable}, options) {
+		this.pipeTo(writable, options)
+		return readable
+	}
+
+	// https://streams.spec.whatwg.org/#rs-pipe-to
+	pipeTo(dest, {preventClose, preventAbort, preventCancel} = {}) {
+		this.pipe(dest)
+		// TODO
+	}
+
+	// https://streams.spec.whatwg.org/#rs-tee
 	tee() {
 		console.warn('TO BE IMPLEMENTED ReadableStreamAdapter.tee()')
 	}
 
-	__applyReadableStreamAdapter(underlyingSource) {
+	// https://streams.spec.whatwg.org/#rs-constructor
+	_ReadableStreamConstructor(underlyingSource = {}, {size, highWaterMark} = {}) {
 		this.underlyingSource
 		// ReadableStreamDefaultController shim
 		this.controller = {
