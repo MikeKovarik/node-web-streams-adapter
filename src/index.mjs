@@ -3,6 +3,8 @@ import WritableStreamAdapter from './WritableStreamAdapter.mjs'
 import {global} from './util.mjs'
 
 
+export {ReadableStreamAdapter, WritableStreamAdapter}
+
 if (!global.ReadableStream)
 	global.ReadableStream = ReadableStreamShim
 if (!global.WritableStream)

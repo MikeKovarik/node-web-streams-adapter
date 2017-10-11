@@ -1,0 +1,22 @@
+{
+  "name": "node-web-streams-adapter",
+  "version": "0.0.1",
+  "description": "Use the new Web Streams API built on top of Node Streams",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "bugs": {
+    "url" : "https://github.com/MikeKovarik/node-web-streams-adapter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MikeKovarik/node-web-streams-adapter.git"
+  },
+  "keywords": ["stream", "web streams", "ReadableStream", "WritableStream", "Readable", "Writable"],
+  "author": "Mike Kovařík",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^0.50.0"
+  }
+}
